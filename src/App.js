@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import MainContent from "./components/MainContent";
+import Layout from "./shared/Layout";
+import ManageResidents from "./components/features/manage-residents/pages/ManageResidents";
+import Login from "./components/features/authentication/pages/Login";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <Layout>
+            <MainContent />
+          </Layout>
+        }
+      />
+      <Route
+        path="/manage-residents"
+        element={
+          <Layout>
+            <ManageResidents />
+          </Layout>
+        }
+      />
+      <Route path="/login" element={<Login />} />
+    </Routes>
   );
-}
+};
 
 export default App;
