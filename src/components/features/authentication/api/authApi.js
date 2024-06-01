@@ -15,17 +15,9 @@ export const authApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    registerResident: builder.mutation({
-      query: (data) => ({
-        url: `/resident/`,
-        method: "POST",
-        body: data,
-      }),
-    }),
-
     login: builder.mutation({
       query: (data) => ({
-        url: `/resident/login`,
+        url: `/admin/login`,
         method: "POST",
         body: data,
       }),
@@ -33,4 +25,4 @@ export const authApi = createApi({
   }),
 });
 
-export const { useRegisterResidentMutation, useLoginMutation } = authApi;
+export const {useLoginMutation } = authApi;
