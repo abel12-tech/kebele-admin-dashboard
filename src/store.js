@@ -1,16 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { authApi } from "./components/features/authentication/api/authApi";
-// import { logout } from "./features/authentication/slice/authSlice";
+import { residentApi } from "./components/features/manage-residents/api/residentApi";
 
+// import { logout } from "./features/authentication/slice/authSlice";
 
 export const store = configureStore({
   reducer: {
     [authApi.reducerPath]: authApi.reducer,
+    [residentApi.reducerPath]: residentApi.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(authApi.middleware),
+    getDefaultMiddleware().concat(authApi.middleware, residentApi.middleware),
   devTools: true,
 });
 
