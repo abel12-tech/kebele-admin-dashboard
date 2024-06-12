@@ -4,6 +4,7 @@ import MainContent from "./components/MainContent";
 import Layout from "./shared/Layout";
 import ManageResidents from "./components/features/manage-residents/pages/ManageResidents";
 import Login from "./components/features/authentication/pages/Login";
+import ManageRequests from "./components/features/manage-requests/pages/ManageRequests";
 
 const App = () => {
   return (
@@ -21,6 +22,14 @@ const App = () => {
         element={
           <Layout>
             <ManageResidents />
+          </Layout>
+        }
+      />
+      <Route
+        path="/manage-requests"
+        element={
+          <Layout>
+            <ManageRequests />
           </Layout>
         }
       />

@@ -25,6 +25,8 @@ const Login = () => {
         password,
       });
 
+      console.log(response.data.data);
+
       setLogging(false);
 
       const data = response.data.data;

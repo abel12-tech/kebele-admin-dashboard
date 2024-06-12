@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDarkMode } from "../shared/darkModeContext";
-import profile from "../assets/avatar.jpeg";
+import { selectAdminInfo } from "./features/authentication/slice/authSlice";
+import { useSelector } from "react-redux";
 
 const Header = ({ toggleSideMenu }) => {
   const { isDarkMode, toggleDarkMode, initializeDarkMode } = useDarkMode();
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const adminInfo = useSelector(selectAdminInfo);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -102,7 +104,7 @@ const Header = ({ toggleSideMenu }) => {
             >
               <img
                 className="object-cover w-8 h-8 rounded-full"
-                src={profile}
+                src={adminInfo.profile}
                 alt="no"
                 aria-hidden="true"
               />
