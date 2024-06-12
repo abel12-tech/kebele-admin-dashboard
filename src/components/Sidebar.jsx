@@ -5,6 +5,7 @@ import { MdOutlineDashboard } from "react-icons/md";
 import { selectAdminInfo } from "./features/authentication/slice/authSlice";
 import { FiUsers } from "react-icons/fi";
 import { CiSquareQuestion } from "react-icons/ci";
+import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { useSelector } from "react-redux";
 
 const Sidebar = ({ isSideMenuOpen }) => {
@@ -127,6 +128,30 @@ const Sidebar = ({ isSideMenuOpen }) => {
               <span className="ml-4">Manage Requests</span>
             </Link>
           </li>
+          {adminInfo.role === "Super Admin" ? (
+            <li className="relative px-6 py-3">
+              {activeLink === "/manage-admins" && (
+                <span
+                  className="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                  aria-hidden="true"
+                ></span>
+              )}
+              <Link
+                to="/manage-admins"
+                onClick={() => handleLinkClick("/manage-admins")}
+                className={`inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 ${
+                  isDarkMode
+                    ? "dark:hover:text-gray-200"
+                    : "text-gray-800 dark:hover:text-gray-600"
+                }`}
+              >
+                <MdOutlineAdminPanelSettings className="w-6 h-6" />
+                <span className="ml-4">Manage Admins</span>
+              </Link>
+            </li>
+          ) : (
+            ""
+          )}
         </ul>
       </div>
     </aside>
