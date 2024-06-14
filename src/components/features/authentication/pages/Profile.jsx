@@ -1,8 +1,17 @@
 import React, { useEffect } from "react";
 import { useDarkMode } from "../../../../shared/darkModeContext";
+import { Link } from "react-router-dom";
+import { selectAdminInfo } from "../slice/authSlice";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
   const { isDarkMode, initializeDarkMode } = useDarkMode();
+  const adminInfo = useSelector(selectAdminInfo);
+  console.log(adminInfo);
+  const firstName = adminInfo ? adminInfo.firstName : "";
+  const lastName = adminInfo ? adminInfo.lastName : "";
+  const role = adminInfo ? adminInfo.role : "";
+  const profile = adminInfo ? adminInfo.profile : "";
 
   useEffect(() => {
     initializeDarkMode();
@@ -33,22 +42,24 @@ const Profile = () => {
           </div>
           <div className="flex items-center justify-center -mt-16">
             <img
-              src=""
+              src={profile}
               alt="Profile"
               className="w-32 object-cover h-32 rounded-full border-4 border-white shadow-md"
             />
           </div>
           <div className="text-center mt-4">
-            <h1 className="text-2xl font-bold text-gray-500">Hjjj</h1>
-            <p className="text-gray-500">Admin</p>
+            <h1 className="text-2xl font-bold text-gray-500">
+              {firstName} {lastName}
+            </h1>
+            <p className="text-gray-500">{role}</p>
           </div>
-          <div className="mt-6">
+          {/* <div className="mt-6">
             <Link to={`/update-profile/`}>
               <button className="w-full bg-[#9333EA] hover:bg-[#c190ee] text-white font-semibold py-2 px-4 rounded">
                 Update Profile
               </button>
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
