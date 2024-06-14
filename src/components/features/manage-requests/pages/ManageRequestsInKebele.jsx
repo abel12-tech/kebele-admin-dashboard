@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDarkMode } from "../../../../shared/darkModeContext";
 import {
   useDeleteRequestMutation,
-  useGetAllRequestInKebeleQuery,
+  useGetAllRequestsQuery,
+  useUpdateStatusMutation,
 } from "../api/requestsApi";
 
 const ManageRequestsInKebele = () => {
@@ -13,9 +14,9 @@ const ManageRequestsInKebele = () => {
     isLoading,
     isSuccess,
     error,
-  } = useGetAllRequestInKebeleQuery();
+  } = useGetAllRequestsQuery();
 
-  console.log("requests", requests);
+  const [updateStatus] = useUpdateStatusMutation();
 
   const [deleteRequest] = useDeleteRequestMutation();
 
@@ -32,10 +33,10 @@ const ManageRequestsInKebele = () => {
 
   const onChangeStatus = async (id) => {
     try {
-      // Implement status change logic here
-      console.log(`Change status for request ${id}`);
+      await updateStatus(id).unwrap();
+      window.location.reload();
     } catch (error) {
-      console.error("Error changing status:", error);
+      console.error("Error deleting:", error);
     }
   };
 

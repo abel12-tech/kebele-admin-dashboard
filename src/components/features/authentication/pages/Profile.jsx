@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 const Profile = () => {
   const { isDarkMode, initializeDarkMode } = useDarkMode();
   const adminInfo = useSelector(selectAdminInfo);
-  console.log(adminInfo);
   const firstName = adminInfo ? adminInfo.firstName : "";
   const lastName = adminInfo ? adminInfo.lastName : "";
   const role = adminInfo ? adminInfo.role : "";

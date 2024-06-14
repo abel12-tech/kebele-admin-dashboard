@@ -14,6 +14,7 @@ const ManageResidentsInKebele = () => {
     isSuccess,
     error,
   } = useGetResidentInKebeleQuery();
+  console.log(residents);
 
   console.log("residentss", residents);
 
