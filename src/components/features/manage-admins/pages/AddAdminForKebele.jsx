@@ -12,7 +12,7 @@ const AddAdminForKebele = () => {
   const [lastName, setLastName] = useState("");
   const [profile, setProfile] = useState("");
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [kebele, setKebele] = useState("");
   const [adding, setAdding] = useState(false);
@@ -39,22 +39,24 @@ const AddAdminForKebele = () => {
         profileUrl = await getDownloadURL(profileRef);
       }
 
-      await addAdmin({
+      const res = await addAdmin({
         firstName,
         lastName,
         profile: profileUrl,
         email,
-        username,
+        password,
         phoneNumber,
         kebele,
       });
+
+      console.log(res);
 
       setFirstName("");
       setLastName("");
       setProfile("");
       setEmail("");
-      setUsername("");
       setPhoneNumber("");
+      setPassword("");
       setKebele("");
       setAdding(false);
       navigate("/manage-admins");
@@ -163,12 +165,8 @@ const AddAdminForKebele = () => {
                   />
                 </label>
                 <label className="block mt-4 text-sm">
-                  <span
-                    className={`${
-                      isDarkMode ? "text-gray-400" : "text-gray-700"
-                    }`}
-                  >
-                    Username
+                  <span className="text-gray-700 dark:text-gray-400">
+                    Password
                   </span>
                   <input
                     className={`${
@@ -176,9 +174,10 @@ const AddAdminForKebele = () => {
                         ? "border-gray-600 bg-gray-700 text-gray-300 focus:shadow-outline-gray"
                         : "border-2 outline-none focus:border-gray-200"
                     } focus:border-gray-400 focus:outline-none focus:shadow-outline-purple sm:col-span-2 text-sm rounded-lg outline-none block w-full p-2.5`}
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="Enter your password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </label>
                 <label className="block mt-4 text-sm">
@@ -220,7 +219,7 @@ const AddAdminForKebele = () => {
                   >
                     <option value="">Select Kebele</option>
                     {kebeles?.map((kebele) => (
-                      <option key={kebele.id} value={kebele.id}>
+                      <option key={kebele._id} value={kebele._id}>
                         {kebele.name}
                       </option>
                     ))}
