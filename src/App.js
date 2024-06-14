@@ -14,6 +14,7 @@ import ManageAdmins from "./components/features/manage-admins/pages/ManageAdmins
 import AddAdminForKebele from "./components/features/manage-admins/pages/AddAdminForKebele";
 import ManageRequestsInKebele from "./components/features/manage-requests/pages/ManageRequestsInKebele";
 import ManageResidentsInKebele from "./components/features/manage-residents/pages/ManageResidentsInKebele";
+import Profile from "./components/features/authentication/pages/Profile";
 
 const App = () => {
   const isAuthenticated = useSelector(selectIsAuthenticated);
@@ -90,6 +91,14 @@ const App = () => {
           ) : (
             <Navigate to="/login" replace />
           )
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <Layout>
+            <Profile />
+          </Layout>
         }
       />
       <Route path="/login" element={<Login />} />

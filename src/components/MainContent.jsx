@@ -2,9 +2,12 @@ import React, { useEffect } from "react";
 import { useDarkMode } from "../shared/darkModeContext";
 import { MdOutlineCategory } from "react-icons/md";
 import { MdPeopleOutline } from "react-icons/md";
+import { useGetKebeleDatasQuery } from "./features/dashboard-summary/api/dataApi";
 
 const MainContent = () => {
   const { isDarkMode, initializeDarkMode } = useDarkMode();
+  const { data: datas, isLoading, isSuccess } = useGetKebeleDatasQuery();
+  console.log(datas);
 
   useEffect(() => {
     initializeDarkMode();
@@ -50,7 +53,7 @@ const MainContent = () => {
                   isDarkMode ? "text-gray-200" : "text-gray-700"
                 }`}
               >
-                2
+                {datas?.dashboardSummary.totalResident}
               </p>
             </div>
           </div>
@@ -69,14 +72,14 @@ const MainContent = () => {
                   isDarkMode ? "text-gray-400" : "text-gray-600"
                 }`}
               >
-                New Registered user
+                Total ID requested
               </p>
               <p
                 className={`text-lg font-semibold ${
                   isDarkMode ? "text-gray-200" : "text-gray-700"
                 }`}
               >
-                2
+                {datas?.dashboardSummary.totalId}
               </p>
             </div>
           </div>

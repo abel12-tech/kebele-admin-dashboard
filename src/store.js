@@ -5,6 +5,7 @@ import { residentApi } from "./components/features/manage-residents/api/resident
 import authSliceReducer from "./components/features/authentication/slice/authSlice";
 import { requestsApi } from "./components/features/manage-requests/api/requestsApi";
 import { adminApi } from "./components/features/manage-admins/api/adminApi";
+import { dataApi } from "./components/features/dashboard-summary/api/dataApi";
 
 // import { logout } from "./features/authentication/slice/authSlice";
 
@@ -14,6 +15,7 @@ export const store = configureStore({
     [residentApi.reducerPath]: residentApi.reducer,
     [requestsApi.reducerPath]: requestsApi.reducer,
     [adminApi.reducerPath]: adminApi.reducer,
+    [dataApi.reducerPath]: dataApi.reducer,
     auth: authSliceReducer,
   },
 
@@ -22,7 +24,8 @@ export const store = configureStore({
       authApi.middleware,
       residentApi.middleware,
       requestsApi.middleware,
-      adminApi.middleware
+      adminApi.middleware,
+      dataApi.middleware
     ),
   devTools: true,
 });
