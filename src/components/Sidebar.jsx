@@ -17,6 +17,8 @@ const Sidebar = ({ isSideMenuOpen }) => {
     setActiveLink(link);
   };
 
+  const role = adminInfo?.role ?? "";
+
   return (
     <aside
       className={`${
@@ -65,7 +67,7 @@ const Sidebar = ({ isSideMenuOpen }) => {
         </ul>
 
         <ul>
-          {adminInfo.role === "Super Admin" ? (
+          {role === "Super Admin" ? (
             <li className="relative px-6 py-3">
               {activeLink === "/manage-residents" && (
                 <span
@@ -128,7 +130,7 @@ const Sidebar = ({ isSideMenuOpen }) => {
               <span className="ml-4">Manage Requests</span>
             </Link>
           </li>
-          {adminInfo.role === "Super Admin" ? (
+          {role === "Super Admin" ? (
             <li className="relative px-6 py-3">
               {activeLink === "/manage-admins" && (
                 <span

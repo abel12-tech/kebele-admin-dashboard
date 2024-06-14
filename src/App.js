@@ -45,7 +45,7 @@ const App = () => {
       <Route
         path="/manage-admins"
         element={
-          isAuthenticated && adminInfo.role === "Super Admin" ? (
+          isAuthenticated && adminInfo?.role === "Super Admin" ? (
             <Layout>
               <ManageAdmins />
             </Layout>
@@ -57,7 +57,7 @@ const App = () => {
       <Route
         path="/add-admins"
         element={
-          isAuthenticated && adminInfo.role === "Super Admin" ? (
+          isAuthenticated && adminInfo?.role === "Super Admin" ? (
             <Layout>
               <AddAdminForKebele />
             </Layout>

@@ -104,8 +104,8 @@ const Header = ({ toggleSideMenu }) => {
             >
               <img
                 className="object-cover w-8 h-8 rounded-full"
-                src={adminInfo.profile}
-                alt="no"
+                src={adminInfo?.profile ?? ""}
+                alt="Profile"
                 aria-hidden="true"
               />
             </button>
