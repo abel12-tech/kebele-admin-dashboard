@@ -90,15 +90,15 @@ const Sidebar = ({ isSideMenuOpen }) => {
             </li>
           ) : (
             <li className="relative px-6 py-3">
-              {activeLink === "/manage-residents" && (
+              {activeLink === "/manage-residents-in-kebele" && (
                 <span
                   className="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
                   aria-hidden="true"
                 ></span>
               )}
               <Link
-                to="/manage-residents"
-                onClick={() => handleLinkClick("/manage-residents")}
+                to="/manage-residents-in-kebele"
+                onClick={() => handleLinkClick("/manage-residents-in-kebele")}
                 className={`inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 ${
                   isDarkMode
                     ? "dark:hover:text-gray-200"
@@ -110,26 +110,49 @@ const Sidebar = ({ isSideMenuOpen }) => {
               </Link>
             </li>
           )}
-          <li className="relative px-6 py-3">
-            {activeLink === "/manage-requests" && (
-              <span
-                className="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
-                aria-hidden="true"
-              ></span>
-            )}
-            <Link
-              to="/manage-requests"
-              onClick={() => handleLinkClick("/manage-requests")}
-              className={`inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 ${
-                isDarkMode
-                  ? "dark:hover:text-gray-200"
-                  : "text-gray-800 dark:hover:text-gray-600"
-              }`}
-            >
-              <CiSquareQuestion className="w-6 h-6" />
-              <span className="ml-4">Manage Requests</span>
-            </Link>
-          </li>
+          {role === "Super Admin" ? (
+            <li className="relative px-6 py-3">
+              {activeLink === "/manage-requests" && (
+                <span
+                  className="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                  aria-hidden="true"
+                ></span>
+              )}
+              <Link
+                to="/manage-requests"
+                onClick={() => handleLinkClick("/manage-requests")}
+                className={`inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 ${
+                  isDarkMode
+                    ? "dark:hover:text-gray-200"
+                    : "text-gray-800 dark:hover:text-gray-600"
+                }`}
+              >
+                <CiSquareQuestion className="w-6 h-6" />
+                <span className="ml-4">Manage Requests</span>
+              </Link>
+            </li>
+          ) : (
+            <li className="relative px-6 py-3">
+              {activeLink === "/manage-requests-in-kebele" && (
+                <span
+                  className="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                  aria-hidden="true"
+                ></span>
+              )}
+              <Link
+                to="/manage-requests-in-kebele"
+                onClick={() => handleLinkClick("/manage-requests-in-kebele")}
+                className={`inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 ${
+                  isDarkMode
+                    ? "dark:hover:text-gray-200"
+                    : "text-gray-800 dark:hover:text-gray-600"
+                }`}
+              >
+                <CiSquareQuestion className="w-6 h-6" />
+                <span className="ml-4">Manage Requests In Kebele</span>
+              </Link>
+            </li>
+          )}
           {role === "Super Admin" ? (
             <li className="relative px-6 py-3">
               {activeLink === "/manage-admins" && (

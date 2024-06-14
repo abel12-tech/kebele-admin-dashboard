@@ -9,7 +9,7 @@ export const residentApi = createApi({
     prepareHeaders: async (headers) => {
       const token = getTokenFromCookies();
       if (token) {
-        headers.Authorization = `Bearer ${token}`;
+        headers.set("Authorization", `Bearer ${token}`);
       }
       return headers;
     },

@@ -2,8 +2,6 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BASE_URL } from "../../../../constants";
 import { getTokenFromCookies } from "../../../../shared/getToken.mjs";
 
-
-
 export const requestsApi = createApi({
   reducerPath: "requestsApi",
   baseQuery: fetchBaseQuery({
@@ -21,6 +19,10 @@ export const requestsApi = createApi({
       query: () => "/id/",
       method: "GET",
     }),
+    getAllRequestInKebele: builder.query({
+      query: () => "/id/in-my-kebele/",
+      method: "GET",
+    }),
     deleteRequest: builder.mutation({
       query: (id) => ({
         url: `/id/${id}`,
@@ -30,4 +32,8 @@ export const requestsApi = createApi({
   }),
 });
 
-export const { useGetAllRequestsQuery, useDeleteRequestMutation } = requestsApi;
+export const {
+  useGetAllRequestsQuery,
+  useDeleteRequestMutation,
+  useGetAllRequestInKebeleQuery,
+} = requestsApi;

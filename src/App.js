@@ -12,6 +12,8 @@ import {
 import { useSelector } from "react-redux";
 import ManageAdmins from "./components/features/manage-admins/pages/ManageAdmins";
 import AddAdminForKebele from "./components/features/manage-admins/pages/AddAdminForKebele";
+import ManageRequestsInKebele from "./components/features/manage-requests/pages/ManageRequestsInKebele";
+import ManageResidentsInKebele from "./components/features/manage-residents/pages/ManageResidentsInKebele";
 
 const App = () => {
   const isAuthenticated = useSelector(selectIsAuthenticated);
@@ -60,6 +62,30 @@ const App = () => {
           isAuthenticated && adminInfo?.role === "Super Admin" ? (
             <Layout>
               <AddAdminForKebele />
+            </Layout>
+          ) : (
+            <Navigate to="/login" replace />
+          )
+        }
+      />
+      <Route
+        path="/manage-requests-in-kebele"
+        element={
+          isAuthenticated && adminInfo?.role === "Kebele Admin" ? (
+            <Layout>
+              <ManageRequestsInKebele />
+            </Layout>
+          ) : (
+            <Navigate to="/login" replace />
+          )
+        }
+      />
+      <Route
+        path="/manage-residents-in-kebele"
+        element={
+          isAuthenticated && adminInfo?.role === "Kebele Admin" ? (
+            <Layout>
+              <ManageResidentsInKebele />
             </Layout>
           ) : (
             <Navigate to="/login" replace />
