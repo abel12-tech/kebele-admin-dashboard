@@ -24,6 +24,9 @@ export const requestsApi = createApi({
       method: "GET",
     }),
 
+    getRequestById: builder.query({
+      query: (id) => `/id/${id}`,
+    }),
     deleteRequest: builder.mutation({
       query: (id) => ({
         url: `/id/${id}`,
@@ -45,4 +48,5 @@ export const {
   useDeleteRequestMutation,
   useGetAllRequestInKebeleQuery,
   useUpdateStatusMutation,
+  useGetRequestByIdQuery,
 } = requestsApi;

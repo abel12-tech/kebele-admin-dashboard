@@ -15,6 +15,7 @@ import AddAdminForKebele from "./components/features/manage-admins/pages/AddAdmi
 import ManageRequestsInKebele from "./components/features/manage-requests/pages/ManageRequestsInKebele";
 import ManageResidentsInKebele from "./components/features/manage-residents/pages/ManageResidentsInKebele";
 import Profile from "./components/features/authentication/pages/Profile";
+import RequestDetails from "./components/features/manage-requests/pages/RequestDetails";
 
 const App = () => {
   const isAuthenticated = useSelector(selectIsAuthenticated);
@@ -98,6 +99,14 @@ const App = () => {
         element={
           <Layout>
             <Profile />
+          </Layout>
+        }
+      />
+      <Route
+        path="/requests/:id"
+        element={
+          <Layout>
+            <RequestDetails />
           </Layout>
         }
       />

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDarkMode } from "../../../../shared/darkModeContext";
 import {
   useDeleteRequestMutation,
@@ -15,9 +16,8 @@ const ManageRequests = () => {
     error,
   } = useGetAllRequestsQuery();
 
-  console.log(requests);
-
   const [deleteRequest] = useDeleteRequestMutation();
+  const navigate = useNavigate();
 
   const itemsPerPage = 5;
 
@@ -32,7 +32,6 @@ const ManageRequests = () => {
 
   const onChangeStatus = async (id) => {
     try {
-      // Implement status change logic here
       console.log(`Change status for request ${id}`);
     } catch (error) {
       console.error("Error changing status:", error);
@@ -108,6 +107,8 @@ const ManageRequests = () => {
                       className={`${
                         isDarkMode ? "text-gray-400" : "text-gray-700"
                       }`}
+                      onClick={() => navigate(`/requests/${request._id}`)}
+                      style={{ cursor: "pointer" }}
                     >
                       <td className="px-4 py-3 text-sm">{request.resident}</td>
                       <td className="px-4 py-3 text-sm">{request.status}</td>
@@ -167,7 +168,6 @@ const ManageRequests = () => {
               Showing {startIndex + 1}-{endIndex} of {requests?.length}
             </span>
             <span className="col-span-2" />
-            {/* Pagination */}
             <span className="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
               <nav aria-label="Table navigation">
                 <ul className="inline-flex items-center">
@@ -184,7 +184,7 @@ const ManageRequests = () => {
                         viewBox="0 0 20 20"
                       >
                         <path
-                          d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                          d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 01-1.414 1.414l-4-4a1 1 010-1.414l4-4a1 1 011.414 0z"
                           clipRule="evenodd"
                           fillRule="evenodd"
                         />
@@ -220,7 +220,7 @@ const ManageRequests = () => {
                         viewBox="0 0 20 20"
                       >
                         <path
-                          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 011.414-1.414l4 4a1 1 010 1.414l-4 4a1 1 01-1.414 0z"
                           clipRule="evenodd"
                           fillRule="evenodd"
                         />
