@@ -7,7 +7,6 @@ import { requestsApi } from "./components/features/manage-requests/api/requestsA
 import { adminApi } from "./components/features/manage-admins/api/adminApi";
 import { dataApi } from "./components/features/dashboard-summary/api/dataApi";
 
-// import { logout } from "./features/authentication/slice/authSlice";
 
 export const store = configureStore({
   reducer: {

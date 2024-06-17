@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDarkMode } from "../../../../shared/darkModeContext";
 import {
   useDeleteRequestMutation,
@@ -27,14 +27,6 @@ const ManageRequests = () => {
       window.location.reload();
     } catch (error) {
       console.error("Error deleting:", error);
-    }
-  };
-
-  const onChangeStatus = async (id) => {
-    try {
-      console.log(`Change status for request ${id}`);
-    } catch (error) {
-      console.error("Error changing status:", error);
     }
   };
 
@@ -114,13 +106,13 @@ const ManageRequests = () => {
                       <td className="px-4 py-3 text-sm">{request.status}</td>
                       <td className="px-4 py-3 text-sm">
                         <div className="flex items-center space-x-4 text-sm">
-                          <button
+                          <Link
+                            to={`/requests/${request._id}`}
                             className="flex items-center bg-green-400 text-white justify-between px-2 py-2 text-sm font-medium leading-5 rounded-lg"
                             aria-label="Change Status"
-                            onClick={() => onChangeStatus(request._id)}
                           >
-                            changeStatus
-                          </button>
+                            See Details
+                          </Link>
                           <button
                             className="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                             aria-label="Delete"

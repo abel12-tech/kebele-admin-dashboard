@@ -5,6 +5,8 @@ import {
   useUpdateStatusMutation,
 } from "../api/requestsApi";
 import { useDarkMode } from "../../../../shared/darkModeContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const RequestDetails = () => {
   const { isDarkMode, initializeDarkMode } = useDarkMode();
@@ -19,16 +21,28 @@ const RequestDetails = () => {
     isSuccess,
     error,
   } = useGetRequestByIdQuery(id);
-  console.log(request);
+
+  const date = request?._id.reservationDate;
   const [updateRequestStatus] = useUpdateStatusMutation();
 
-  const onChangeStatus = async () => {
+  const onChangeStatus = async (newStatus) => {
     try {
-      await updateRequestStatus({ id, status: "New Status" }).unwrap();
-      alert("Status updated successfully");
+      await updateRequestStatus({
+        id,
+        status: newStatus,
+        reservationDate: date,
+        statusUpdated: "yes",
+      }).unwrap();
+
+      toast.success("Status updated successfully", {
+        position: "top-right",
+      });
+      window.location.reload();
     } catch (error) {
-      console.error("Error changing status:", error);
-      alert("Error changing status");
+      console.log(error);
+      toast.error(error, {
+        position: "top-right",
+      });
     }
   };
 
@@ -50,10 +64,11 @@ const RequestDetails = () => {
         >
           <h1 className="text-2xl font-bold mb-4">Request Details</h1>
           <div className="mt-4">
-            <p>
+            <ToastContainer position="top-right" duration={2000} />
+            <p className="mb-2">
               <strong>Resident:</strong> {request._id.resident}
             </p>
-            <p>
+            <p className="mb-2">
               <strong>Status:</strong> {request._id.status}
             </p>
           </div>
@@ -72,12 +87,34 @@ const RequestDetails = () => {
               </div>
             </div>
           )}
-          <button
-            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-            onClick={onChangeStatus}
-          >
-            Change Status
-          </button>
+          <h1 className="text-2xl font-bold mb-4 mt-4">Change Status</h1>
+          <div className="mt-4 flex space-x-2">
+            {/* <h2>Change Status</h2> */}
+            <button
+              className="px-4 py-2 bg-blue-500 text-white rounded"
+              onClick={() => onChangeStatus("Up Coming")}
+            >
+              Up Coming
+            </button>
+            <button
+              className="px-4 py-2 bg-green-500 text-white rounded"
+              onClick={() => onChangeStatus("Active")}
+            >
+              Active
+            </button>
+            <button
+              className="px-4 py-2 bg-yellow-500 text-white rounded"
+              onClick={() => onChangeStatus("Completed")}
+            >
+              Completed
+            </button>
+            <button
+              className="px-4 py-2 bg-red-500 text-white rounded"
+              onClick={() => onChangeStatus("Rejected")}
+            >
+              Rejected
+            </button>
+          </div>
         </div>
       )}
     </div>

@@ -35,7 +35,7 @@ export const requestsApi = createApi({
     }),
     updateStatus: builder.mutation({
       query: (data) => ({
-        url: `/id/`,
+        url: `/id/${data.id}`,
         method: "PATCH",
         body: data,
       }),
