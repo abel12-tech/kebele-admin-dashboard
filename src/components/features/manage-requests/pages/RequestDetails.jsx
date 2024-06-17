@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
   useGetRequestByIdQuery,
@@ -22,7 +22,7 @@ const RequestDetails = () => {
     error,
   } = useGetRequestByIdQuery(id);
 
-  const date = request?._id.reservationDate;
+  const [selectedDate, setSelectedDate] = useState("");
   const [updateRequestStatus] = useUpdateStatusMutation();
 
   const onChangeStatus = async (newStatus) => {
@@ -30,7 +30,7 @@ const RequestDetails = () => {
       await updateRequestStatus({
         id,
         status: newStatus,
-        reservationDate: date,
+        reservationDate: selectedDate,
         statusUpdated: "yes",
       }).unwrap();
 
@@ -44,6 +44,10 @@ const RequestDetails = () => {
         position: "top-right",
       });
     }
+  };
+
+  const handleDateChange = (e) => {
+    setSelectedDate(e.target.value);
   };
 
   return (
@@ -64,7 +68,7 @@ const RequestDetails = () => {
         >
           <h1 className="text-2xl font-bold mb-4">Request Details</h1>
           <div className="mt-4">
-            <ToastContainer position="top-right" duration={2000} />
+            <ToastContainer position="top-right" duration={3000} />
             <p className="mb-2">
               <strong>Resident:</strong> {request._id.resident}
             </p>
@@ -88,8 +92,18 @@ const RequestDetails = () => {
             </div>
           )}
           <h1 className="text-2xl font-bold mb-4 mt-4">Change Status</h1>
+          <div className="mt-6">
+            <label className="font-semibold mb-2 mr-4">
+              Pick Reservation Date
+            </label>
+            <input
+              type="date"
+              value={selectedDate}
+              onChange={handleDateChange}
+              className="p-2 border rounded"
+            />
+          </div>
           <div className="mt-4 flex space-x-2">
-            {/* <h2>Change Status</h2> */}
             <button
               className="px-4 py-2 bg-blue-500 text-white rounded"
               onClick={() => onChangeStatus("Up Coming")}
