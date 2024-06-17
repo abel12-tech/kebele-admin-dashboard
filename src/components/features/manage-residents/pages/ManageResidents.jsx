@@ -73,6 +73,7 @@ const ManageResidents = () => {
                 >
                   <th className="px-4 py-3">First name</th>
                   <th className="px-4 py-3">Last Name</th>
+                  <th className="px-4 py-3">Kebele</th>
                   <th className="px-4 py-3">Phone Number</th>
                   <th className="px-4 py-3">Actions</th>
                 </tr>
@@ -103,6 +104,9 @@ const ManageResidents = () => {
                         {resident.firstName}
                       </td>
                       <td className="px-4 py-3 text-sm">{resident.lastName}</td>
+                      <td className="px-4 py-3 text-sm">
+                        {resident.kebele?.name}
+                      </td>
                       <td className="px-4 py-3 text-sm">
                         {resident.phoneNumber}
                       </td>

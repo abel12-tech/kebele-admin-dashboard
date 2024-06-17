@@ -70,7 +70,7 @@ const RequestDetails = () => {
           <div className="mt-4">
             <ToastContainer position="top-right" duration={3000} />
             <p className="mb-2">
-              <strong>Resident:</strong> {request._id.resident}
+              <strong>Resident:</strong> {request._id.resident?.firstName}
             </p>
             <p className="mb-2">
               <strong>Status:</strong> {request._id.status}

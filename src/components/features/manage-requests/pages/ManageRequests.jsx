@@ -15,6 +15,7 @@ const ManageRequests = () => {
     isSuccess,
     error,
   } = useGetAllRequestsQuery();
+  console.log(requests);
 
   const [deleteRequest] = useDeleteRequestMutation();
   const navigate = useNavigate();
@@ -102,7 +103,7 @@ const ManageRequests = () => {
                       onClick={() => navigate(`/requests/${request._id}`)}
                       style={{ cursor: "pointer" }}
                     >
-                      <td className="px-4 py-3 text-sm">{request.resident}</td>
+                      <td className="px-4 py-3 text-sm">{request.resident?.firstName}</td>
                       <td className="px-4 py-3 text-sm">{request.status}</td>
                       <td className="px-4 py-3 text-sm">
                         <div className="flex items-center space-x-4 text-sm">

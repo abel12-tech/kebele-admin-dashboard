@@ -6,7 +6,7 @@ import authSliceReducer from "./components/features/authentication/slice/authSli
 import { requestsApi } from "./components/features/manage-requests/api/requestsApi";
 import { adminApi } from "./components/features/manage-admins/api/adminApi";
 import { dataApi } from "./components/features/dashboard-summary/api/dataApi";
-
+import { kebeleApi } from "./components/features/manage-kebele/api/kebeleApi";
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +15,7 @@ export const store = configureStore({
     [requestsApi.reducerPath]: requestsApi.reducer,
     [adminApi.reducerPath]: adminApi.reducer,
     [dataApi.reducerPath]: dataApi.reducer,
+    [kebeleApi.reducerPath]: kebeleApi.reducer,
     auth: authSliceReducer,
   },
 
@@ -24,7 +25,8 @@ export const store = configureStore({
       residentApi.middleware,
       requestsApi.middleware,
       adminApi.middleware,
-      dataApi.middleware
+      dataApi.middleware,
+      kebeleApi.middleware
     ),
   devTools: true,
 });
