@@ -18,6 +18,7 @@ const AddAdminForKebele = () => {
   const [adding, setAdding] = useState(false);
   const [addAdmin] = useAddAdminMutation();
   const { data: kebeles, isLoading: isKebeleLoading } = useGetKebelesQuery();
+
   const navigate = useNavigate();
 
   useEffect(() => {
