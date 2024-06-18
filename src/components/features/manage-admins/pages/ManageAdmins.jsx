@@ -3,7 +3,6 @@ import { useDarkMode } from "../../../../shared/darkModeContext";
 import { useDeleteAdminMutation, useGetAdminsQuery } from "../api/adminApi";
 import { Link } from "react-router-dom";
 
-
 const ManageAdmins = () => {
   const { isDarkMode, initializeDarkMode } = useDarkMode();
   const [currentPage, setCurrentPage] = useState(1);
@@ -107,7 +106,9 @@ const ManageAdmins = () => {
                       <td className="px-4 py-3 text-sm">{admin.firstName}</td>
                       <td className="px-4 py-3 text-sm">{admin.lastName}</td>
                       <td className="px-4 py-3 text-sm">{admin.phoneNumber}</td>
-                      <td className="px-4 py-3 text-sm">{admin.kebele}</td>
+                      <td className="px-4 py-3 text-sm">
+                        {admin.kebele?.name}
+                      </td>
                       <td className="px-4 py-3 text-sm">
                         <div className="flex items-center space-x-4 text-sm">
                           <button
