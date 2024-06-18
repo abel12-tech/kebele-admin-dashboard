@@ -15,7 +15,7 @@ const ManageRequestsInKebele = () => {
     isSuccess,
     error,
   } = useGetAllRequestInKebeleQuery();
-  console.log(requests)
+  // console.log(requests)
 
   const [updateStatus] = useUpdateStatusMutation();
 
