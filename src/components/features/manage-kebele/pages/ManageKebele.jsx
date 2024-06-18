@@ -18,7 +18,6 @@ const ManageKebele = () => {
   const onDelete = async (id) => {
     try {
       await deleteKebele(id).unwrap();
-      console.log(res);
       window.location.reload();
     } catch (error) {
       console.error("Error deleting:", error);
