@@ -195,7 +195,7 @@ const Sidebar = ({ isSideMenuOpen }) => {
                 }`}
               >
                 <MdOutlineAdminPanelSettings className="w-6 h-6" />
-                <span className="ml-4">Manage Admins</span>
+                <span className="ml-4">Manage Kebeles</span>
               </Link>
             </li>
           ) : (

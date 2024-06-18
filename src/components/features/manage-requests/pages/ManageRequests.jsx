@@ -15,14 +15,14 @@ const ManageRequests = () => {
     isSuccess,
     error,
   } = useGetAllRequestsQuery();
-  console.log(requests);
 
   const [deleteRequest] = useDeleteRequestMutation();
   const navigate = useNavigate();
 
   const itemsPerPage = 5;
 
-  const onDelete = async (id) => {
+  const onDelete = async (id, e) => {
+    e.stopPropagation();
     try {
       await deleteRequest(id).unwrap();
       window.location.reload();
@@ -103,7 +103,9 @@ const ManageRequests = () => {
                       onClick={() => navigate(`/requests/${request._id}`)}
                       style={{ cursor: "pointer" }}
                     >
-                      <td className="px-4 py-3 text-sm">{request.resident?.firstName}</td>
+                      <td className="px-4 py-3 text-sm">
+                        {request.resident?.firstName}
+                      </td>
                       <td className="px-4 py-3 text-sm">{request.status}</td>
                       <td className="px-4 py-3 text-sm">
                         <div className="flex items-center space-x-4 text-sm">
@@ -117,7 +119,7 @@ const ManageRequests = () => {
                           <button
                             className="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                             aria-label="Delete"
-                            onClick={() => onDelete(request._id)}
+                            onClick={(e) => onDelete(request._id, e)}
                           >
                             <svg
                               className="w-5 h-5"

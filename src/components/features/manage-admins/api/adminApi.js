@@ -36,6 +36,19 @@ export const adminApi = createApi({
         method: "DELETE",
       }),
     }),
+    deleteKebele: builder.mutation({
+      query: (id) => ({
+        url: `/kebele/${id}`,
+        method: "DELETE",
+      }),
+    }),
+    addKebele: builder.mutation({
+      query: (data) => ({
+        url: "/kebele/",
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -44,4 +57,6 @@ export const {
   useGetAdminsQuery,
   useDeleteAdminMutation,
   useGetKebelesQuery,
+  useDeleteKebeleMutation,
+  useAddKebeleMutation,
 } = adminApi;

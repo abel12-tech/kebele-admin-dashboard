@@ -16,6 +16,8 @@ import ManageRequestsInKebele from "./components/features/manage-requests/pages/
 import ManageResidentsInKebele from "./components/features/manage-residents/pages/ManageResidentsInKebele";
 import Profile from "./components/features/authentication/pages/Profile";
 import RequestDetails from "./components/features/manage-requests/pages/RequestDetails";
+import ManageKebele from "./components/features/manage-kebele/pages/ManageKebele";
+import AddKebele from "./components/features/manage-kebele/pages/AddKebele";
 
 const App = () => {
   const isAuthenticated = useSelector(selectIsAuthenticated);
@@ -88,6 +90,30 @@ const App = () => {
           isAuthenticated && adminInfo?.role === "Kebele Admin" ? (
             <Layout>
               <ManageResidentsInKebele />
+            </Layout>
+          ) : (
+            <Navigate to="/login" replace />
+          )
+        }
+      />
+      <Route
+        path="/manage-kebeles"
+        element={
+          isAuthenticated && adminInfo?.role === "Super Admin" ? (
+            <Layout>
+              <ManageKebele />
+            </Layout>
+          ) : (
+            <Navigate to="/login" replace />
+          )
+        }
+      />
+      <Route
+        path="/add-kebele"
+        element={
+          isAuthenticated && adminInfo?.role === "Super Admin" ? (
+            <Layout>
+              <AddKebele />
             </Layout>
           ) : (
             <Navigate to="/login" replace />
