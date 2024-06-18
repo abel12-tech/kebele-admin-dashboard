@@ -14,9 +14,9 @@ const ManageResidentsInKebele = () => {
     isSuccess,
     error,
   } = useGetResidentInKebeleQuery();
-  console.log(residents);
+  // console.log(residents);
 
-  console.log("residentss", residents);
+  // console.log("residentss", residents);
 
   const [deleteResident] = useDeleteResidentMutation();
 
