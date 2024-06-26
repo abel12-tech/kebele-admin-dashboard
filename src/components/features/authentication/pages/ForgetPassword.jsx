@@ -5,7 +5,8 @@ import { useForgetPasswordMutation } from "../api/authApi";
 const ForgetPassword = () => {
   const { isDarkMode, initializeDarkMode } = useDarkMode();
   const [phoneNumber, setPhonenumber] = useState("");
-  const [forgetPassword, { isLoading, isSuccess, isError, error }] = useForgetPasswordMutation();
+  const [forgetPassword, { isLoading, isSuccess, isError, error }] =
+    useForgetPasswordMutation();
 
   useEffect(() => {
     initializeDarkMode();
@@ -18,9 +19,8 @@ const ForgetPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await forgetPassword({ phoneNumber }).unwrap();
-      console.log(res)
-      console.log("Reset link sent to:", phoneNumber);
+      await forgetPassword({ phoneNumber }).unwrap();
+      console.log("Reset link sent to your Email ,Check it:", phoneNumber);
     } catch (err) {
       console.error("Failed to send reset link:", err);
     }
@@ -77,8 +77,12 @@ const ForgetPassword = () => {
               </button>
             </div>
           </form>
-          {isSuccess && <p className="mt-4 text-green-500">Reset link sent successfully!</p>}
-          {isError && <p className="mt-4 text-red-500">Error: {error.message}</p>}
+          {isSuccess && (
+            <p className="mt-4 text-green-500">Reset link sent successfully!</p>
+          )}
+          {isError && (
+            <p className="mt-4 text-red-500">Error: {error.message}</p>
+          )}
         </div>
       </div>
     </div>

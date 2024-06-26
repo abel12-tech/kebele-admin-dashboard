@@ -36,6 +36,13 @@ export const authApi = createApi({
         body: data,
       }),
     }),
+    updateProfile: builder.mutation({
+      query: (data) => ({
+        url: `/admin/${data._id}`,
+        method: "PATCH",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -43,4 +50,5 @@ export const {
   useLoginMutation,
   useForgetPasswordMutation,
   useResetPasswordMutation,
+  useUpdateProfileMutation,
 } = authApi;

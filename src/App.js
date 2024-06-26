@@ -21,7 +21,7 @@ import AddKebele from "./components/features/manage-kebele/pages/AddKebele";
 import ManageRenewalRequests from "./components/features/manage-requests/pages/ManageRenewalRequests";
 import ForgetPassword from "./components/features/authentication/pages/ForgetPassword";
 import ResetPassword from "./components/features/authentication/pages/ResetPassword";
-
+import UpdateProfile from "./components/features/authentication/pages/UpdateProfile";
 
 const App = () => {
   const isAuthenticated = useSelector(selectIsAuthenticated);
@@ -137,6 +137,14 @@ const App = () => {
         element={
           <Layout>
             <Profile />
+          </Layout>
+        }
+      />
+      <Route
+        path="/update-profile"
+        element={
+          <Layout>
+            <UpdateProfile />
           </Layout>
         }
       />

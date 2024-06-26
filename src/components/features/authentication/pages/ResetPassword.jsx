@@ -19,9 +19,8 @@ const ResetPassword = () => {
     e.preventDefault();
     try {
       const res = await resetPassword({ token, newPassword }).unwrap();
-      console.log(res);
-      console.log("Password reset successfully");
-      navigate("/login"); 
+      console.log("Password reseted successfully");
+      navigate("/login");
     } catch (err) {
       console.error("Failed to reset password:", err);
     }

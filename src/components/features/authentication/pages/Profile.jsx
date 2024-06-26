@@ -52,13 +52,13 @@ const Profile = () => {
             </h1>
             <p className="text-gray-500">{role}</p>
           </div>
-          {/* <div className="mt-6">
-            <Link to={`/update-profile/`}>
+          <div className="mt-6">
+            <Link to={`/update-profile`}>
               <button className="w-full bg-[#9333EA] hover:bg-[#c190ee] text-white font-semibold py-2 px-4 rounded">
                 Update Profile
               </button>
             </Link>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>
