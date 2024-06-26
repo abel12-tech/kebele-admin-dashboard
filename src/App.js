@@ -22,6 +22,7 @@ import ManageRenewalRequests from "./components/features/manage-requests/pages/M
 import ForgetPassword from "./components/features/authentication/pages/ForgetPassword";
 import ResetPassword from "./components/features/authentication/pages/ResetPassword";
 import UpdateProfile from "./components/features/authentication/pages/UpdateProfile";
+import ChangePassword from "./components/features/authentication/pages/ChangePassword";
 
 const App = () => {
   const isAuthenticated = useSelector(selectIsAuthenticated);
@@ -153,6 +154,14 @@ const App = () => {
         element={
           <Layout>
             <ForgetPassword />
+          </Layout>
+        }
+      />
+      <Route
+        path="/change-password"
+        element={
+          <Layout>
+            <ChangePassword />
           </Layout>
         }
       />

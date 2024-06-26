@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDarkMode } from "../shared/darkModeContext";
 import { selectAdminInfo } from "./features/authentication/slice/authSlice";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { FaExchangeAlt } from "react-icons/fa";
 import { useSelector } from "react-redux";
 
 const Header = ({ toggleSideMenu }) => {
@@ -145,6 +146,15 @@ const Header = ({ toggleSideMenu }) => {
                   >
                     <RiLockPasswordLine className="w-4 h-4 mr-3" />
                     <span>Forget Password</span>
+                  </Link>
+                </li>
+                <li className="flex">
+                  <Link
+                    to="/change-password"
+                    className="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                  >
+                    <FaExchangeAlt className="w-4 h-4 mr-3" />
+                    <span>Change Password</span>
                   </Link>
                 </li>
 

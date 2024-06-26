@@ -73,7 +73,7 @@ const ForgetPassword = () => {
                 className="w-full bg-[#9333EA] hover:bg-[#c190ee] text-white font-semibold py-2 px-4 rounded"
                 disabled={isLoading}
               >
-                {isLoading ? "Sending..." : "Send Reset Link"}
+                {isLoading ? "Sending..." : "Send To Recieve Reset Link"}
               </button>
             </div>
           </form>
