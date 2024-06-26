@@ -4,7 +4,7 @@ import MainContent from "./components/MainContent";
 import Layout from "./shared/Layout";
 import ManageResidents from "./components/features/manage-residents/pages/ManageResidents";
 import Login from "./components/features/authentication/pages/Login";
-import ManageRequests from "./components/features/manage-requests/pages/ManageRequests";
+import ManageRequestForNewId from "./components/features/manage-requests/pages/ManageRequestForNewId";
 import {
   selectAdminInfo,
   selectIsAuthenticated,
@@ -18,6 +18,10 @@ import Profile from "./components/features/authentication/pages/Profile";
 import RequestDetails from "./components/features/manage-requests/pages/RequestDetails";
 import ManageKebele from "./components/features/manage-kebele/pages/ManageKebele";
 import AddKebele from "./components/features/manage-kebele/pages/AddKebele";
+import ManageRenewalRequests from "./components/features/manage-requests/pages/ManageRenewalRequests";
+import ForgetPassword from "./components/features/authentication/pages/ForgetPassword";
+import ResetPassword from "./components/features/authentication/pages/ResetPassword";
+
 
 const App = () => {
   const isAuthenticated = useSelector(selectIsAuthenticated);
@@ -41,10 +45,18 @@ const App = () => {
         }
       />
       <Route
-        path="/manage-requests"
+        path="/manage-requests-for-new-id"
         element={
           <Layout>
-            <ManageRequests />
+            <ManageRequestForNewId />
+          </Layout>
+        }
+      />
+      <Route
+        path="/manage-renewal-requests"
+        element={
+          <Layout>
+            <ManageRenewalRequests />
           </Layout>
         }
       />
@@ -125,6 +137,22 @@ const App = () => {
         element={
           <Layout>
             <Profile />
+          </Layout>
+        }
+      />
+      <Route
+        path="/forget-password"
+        element={
+          <Layout>
+            <ForgetPassword />
+          </Layout>
+        }
+      />
+      <Route
+        path="/reset-password/:token"
+        element={
+          <Layout>
+            <ResetPassword />
           </Layout>
         }
       />

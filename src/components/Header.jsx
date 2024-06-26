@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDarkMode } from "../shared/darkModeContext";
 import { selectAdminInfo } from "./features/authentication/slice/authSlice";
+import { RiLockPasswordLine } from "react-icons/ri";
 import { useSelector } from "react-redux";
 
 const Header = ({ toggleSideMenu }) => {
@@ -134,6 +135,16 @@ const Header = ({ toggleSideMenu }) => {
                       <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                     </svg>
                     <span>Profile</span>
+                  </Link>
+                </li>
+
+                <li className="flex">
+                  <Link
+                    to="/forget-password"
+                    className="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                  >
+                    <RiLockPasswordLine className="w-4 h-4 mr-3" />
+                    <span>Forget Password</span>
                   </Link>
                 </li>
 

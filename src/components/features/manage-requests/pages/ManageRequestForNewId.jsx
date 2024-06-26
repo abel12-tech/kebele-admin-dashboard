@@ -21,6 +21,11 @@ const ManageRequests = () => {
 
   const itemsPerPage = 5;
 
+  // Filter requests to include only those with idtype "new"
+  const filteredRequests = requests?.filter(
+    (request) => request.idType === "New"
+  );
+
   const onDelete = async (id, e) => {
     e.stopPropagation();
     try {
@@ -51,10 +56,13 @@ const ManageRequests = () => {
     setCurrentPage(page);
   };
 
-  const totalPages = Math.ceil((requests?.length || 0) / itemsPerPage);
+  const totalPages = Math.ceil((filteredRequests?.length || 0) / itemsPerPage);
 
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = Math.min(startIndex + itemsPerPage, requests?.length || 0);
+  const endIndex = Math.min(
+    startIndex + itemsPerPage,
+    filteredRequests?.length || 0
+  );
 
   return (
     <div
@@ -94,50 +102,52 @@ const ManageRequests = () => {
                     </td>
                   </tr>
                 ) : isSuccess ? (
-                  requests.slice(startIndex, endIndex).map((request) => (
-                    <tr
-                      key={request._id}
-                      className={`${
-                        isDarkMode ? "text-gray-400" : "text-gray-700"
-                      }`}
-                      onClick={() => navigate(`/requests/${request._id}`)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <td className="px-4 py-3 text-sm">
-                        {request.resident?.firstName}
-                      </td>
-                      <td className="px-4 py-3 text-sm">{request.status}</td>
-                      <td className="px-4 py-3 text-sm">
-                        <div className="flex items-center space-x-4 text-sm">
-                          <Link
-                            to={`/requests/${request._id}`}
-                            className="flex items-center bg-green-400 text-white justify-between px-2 py-2 text-sm font-medium leading-5 rounded-lg"
-                            aria-label="Change Status"
-                          >
-                            See Details
-                          </Link>
-                          <button
-                            className="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                            aria-label="Delete"
-                            onClick={(e) => onDelete(request._id, e)}
-                          >
-                            <svg
-                              className="w-5 h-5"
-                              aria-hidden="true"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
+                  filteredRequests
+                    .slice(startIndex, endIndex)
+                    .map((request) => (
+                      <tr
+                        key={request._id}
+                        className={`${
+                          isDarkMode ? "text-gray-400" : "text-gray-700"
+                        }`}
+                        onClick={() => navigate(`/requests/${request._id}`)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        <td className="px-4 py-3 text-sm">
+                          {request.resident?.firstName}
+                        </td>
+                        <td className="px-4 py-3 text-sm">{request.status}</td>
+                        <td className="px-4 py-3 text-sm">
+                          <div className="flex items-center space-x-4 text-sm">
+                            <Link
+                              to={`/requests/${request._id}`}
+                              className="flex items-center bg-green-400 text-white justify-between px-2 py-2 text-sm font-medium leading-5 rounded-lg"
+                              aria-label="Change Status"
                             >
-                              <path
-                                fillRule="evenodd"
-                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))
+                              See Details
+                            </Link>
+                            <button
+                              className="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                              aria-label="Delete"
+                              onClick={(e) => onDelete(request._id, e)}
+                            >
+                              <svg
+                                className="w-5 h-5"
+                                aria-hidden="true"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
                 ) : (
                   <tr>
                     <td
@@ -160,7 +170,7 @@ const ManageRequests = () => {
             }  uppercase border-t  sm:grid-cols-9`}
           >
             <span className="flex items-center col-span-3">
-              Showing {startIndex + 1}-{endIndex} of {requests?.length}
+              Showing {startIndex + 1}-{endIndex} of {filteredRequests?.length}
             </span>
             <span className="col-span-2" />
             <span className="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
