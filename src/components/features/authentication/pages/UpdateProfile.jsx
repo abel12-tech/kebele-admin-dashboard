@@ -12,9 +12,12 @@ const UpdateProfile = () => {
   const dispatch = useDispatch();
   const adminInfo = useSelector(selectAdminInfo);
   const [firstName, setFirstName] = useState(
-    adminInfo ? adminInfo.firstName : ""
+    adminInfo ? adminInfo.firstName : null
   );
-  const [lastName, setLastName] = useState(adminInfo ? adminInfo.lastName : "");
+  const [lastName, setLastName] = useState(
+    adminInfo ? adminInfo.lastName : null
+  );
+  const [id, setId] = useState(adminInfo ? adminInfo._id : null);
   const [updateProfile, { isLoading }] = useUpdateProfileMutation();
   const navigate = useNavigate();
 
@@ -23,8 +26,8 @@ const UpdateProfile = () => {
   }, [initializeDarkMode]);
 
   useEffect(() => {
-    setFirstName(adminInfo ? adminInfo.firstName : "");
-    setLastName(adminInfo ? adminInfo.lastName : "");
+    setFirstName(adminInfo ? adminInfo.firstName : null);
+    setLastName(adminInfo ? adminInfo.lastName : null);
   }, [adminInfo]);
 
   const handleFirstNameChange = (e) => setFirstName(e.target.value);
@@ -34,7 +37,7 @@ const UpdateProfile = () => {
     e.preventDefault();
     try {
       const res = await updateProfile({
-        _id: adminInfo._id,
+        _id: id,
         firstName: firstName,
         lastName: lastName,
       });

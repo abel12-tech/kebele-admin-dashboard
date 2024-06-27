@@ -4,13 +4,19 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDarkMode } from "../../../../shared/darkModeContext";
 import { useChangePasswordMutation } from "../api/authApi";
+import { useSelector } from "react-redux";
+import { selectAdminInfo } from "../slice/authSlice";
+
 
 const ChangePassword = () => {
   const { isDarkMode, initializeDarkMode } = useDarkMode();
+  const adminInfo = useSelector(selectAdminInfo);
+
   const navigate = useNavigate();
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [id, setId] = useState(adminInfo ? adminInfo._id : null);
   const [changePassword, { isLoading, isSuccess, isError, error }] =
     useChangePasswordMutation();
 
@@ -33,7 +39,7 @@ const ChangePassword = () => {
       return;
     }
     try {
-      await changePassword({ oldPassword, newPassword }).unwrap();
+      await changePassword({ _id: id, oldPassword, newPassword }).unwrap();
       toast.success("Password changed successfully!");
       navigate("/profile");
     } catch (err) {

@@ -21,6 +21,7 @@ const RequestDetails = () => {
     isSuccess,
     error,
   } = useGetRequestByIdQuery(id);
+  console.log(request);
 
   const [selectedDate, setSelectedDate] = useState("");
   const [updateRequestStatus] = useUpdateStatusMutation();
@@ -70,7 +71,39 @@ const RequestDetails = () => {
           <div className="mt-4">
             <ToastContainer position="top-right" duration={3000} />
             <p className="mb-2">
-              <strong>Resident:</strong> {request._id.resident?.firstName}
+              <strong>Resident FullName:</strong> {request.resident?.firstName}{" "}
+              {request.resident?.lastName}
+            </p>
+            <p className="mb-2">
+              <strong>Mother Name.:</strong> {request.resident?.motherName}
+            </p>
+            <p className="mb-2">
+              <strong>Job :</strong> {request.resident?.job}
+            </p>
+            <p className="mb-2">
+              <strong>House No.:</strong> {request.resident?.houseNo}
+            </p>
+            <p className="mb-2">
+              <strong>Place of Birth.:</strong> {request.resident?.placeOfBirth}
+            </p>
+            <p className="mb-2">
+              <strong>Country.:</strong> {request.resident?.countryFrom}
+            </p>
+            <p className="mb-2">
+              <strong className="mr-4 px-2 ml-2">Resident Address: </strong>
+              <em>Woreda</em> :{request.resident?.residentAddress.woreda}
+              <em>Subcity</em> :{request.resident?.residentAddress.subcity}
+              <em>Street</em> :{request.resident?.residentAddress.street}
+            </p>
+            <p className="mb-2">
+              <strong>Phone Number:</strong> {request.resident?.phoneNumber}
+            </p>
+            <p className="mb-2">
+              <strong>Gender:</strong> {request.resident?.gender}
+            </p>
+            <p className="mb-2">
+              <strong>Emergency Contact:</strong>{" "}
+              {request.resident?.emergencyContact}
             </p>
             <p className="mb-2">
               <strong>Status:</strong> {request._id.status}
